@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test Vocacional – Pre Equinoccio</title>
+<meta name="description" content="Descubre tus intereses y aptitudes y qué carreras van contigo con el test vocacional gratuito del Preuniversitario Equinoccio.">
+<meta name="theme-color" content="#0B1F4B">
+
+<!-- Open Graph: vista previa al compartir en WhatsApp, Facebook, etc. -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_EC">
+<meta property="og:site_name" content="Preuniversitario Equinoccio">
+<meta property="og:title" content="Test Vocacional – Pre Equinoccio">
+<meta property="og:description" content="Intereses + aptitudes en unos 25 minutos: descubre qué carreras van contigo. ¡Gratis!">
+<meta property="og:url" content="https://edwiningav-gif.github.io/test-vocacional-equinoccio/">
+<meta property="og:image" content="https://edwiningav-gif.github.io/test-vocacional-equinoccio/matty.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="logo.png">
+
+<!-- Tipografías: Baloo 2 (títulos) y Nunito (texto) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   1. VARIABLES DE MARCA
+   ========================================================= */
+:root{
+  --azul:#0B1F4B;
+  --azul-medio:#1A3470;
+  --azul-claro:#E8EDF7;
+  --dorado:#C8962E;
+  --dorado-oscuro:#9A6F17;   /* para texto dorado sobre blanco (mejor contraste) */
+  --dorado-claro:#FBF3E2;
+  --blanco:#FFFFFF;
+  --gris-texto:#3B4660;
+  --gris-suave:#6B7690;
+  --fondo:#F5F7FC;
+  --radio:18px;
+  --sombra:0 6px 20px rgba(11,31,75,.10);
+  --sombra-suave:0 2px 8px rgba(11,31,75,.08);
+  --fuente-titulos:"Baloo 2", "Nunito", sans-serif;
+  --fuente-texto:"Nunito", sans-serif;
+}
+
+/* =========================================================
+   2. BASE
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:var(--fuente-texto);
+  font-size:16px;
+  line-height:1.5;
+  color:var(--gris-texto);
+  background:var(--fondo);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+h1,h2,h3{font-family:var(--fuente-titulos);color:var(--azul);line-height:1.15;margin:0 0 .4em}
+img{max-width:100%}
+a{color:var(--azul)}
+button,input,select{font:inherit}
+.oculto{display:none !important}
+.solo-lectores{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+:focus-visible{outline:3px solid var(--dorado);outline-offset:2px}
+
+/* =========================================================
+   3. ENCABEZADO
+   ========================================================= */
+.encabezado{
+  background:var(--blanco);
+  border-bottom:4px solid var(--dorado);
+  box-shadow:var(--sombra-suave);
+}
+.encabezado-interno{
+  max-width:760px;margin:0 auto;padding:.5rem 1rem;
+  display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+}
+.encabezado img{height:46px;width:auto;display:block}
+.encabezado .etiqueta{
+  font-family:var(--fuente-titulos);font-weight:700;color:var(--azul);
+  font-size:1rem;background:var(--dorado-claro);border-radius:999px;padding:.2rem .8rem;white-space:nowrap;
+}
+
+/* =========================================================
+   4. CONTENEDOR Y TARJETAS
+   ========================================================= */
+main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:1rem .85rem 2rem}
+.tarjeta{
+  background:var(--blanco);border-radius:var(--radio);box-shadow:var(--sombra);
+  padding:1.25rem 1rem;margin-bottom:1rem;
+}
+@media (min-width:600px){
+  main{padding:1.5rem 1.25rem 2.5rem}
+  .tarjeta{padding:1.75rem 1.75rem}
+}
+
+/* =========================================================
+   5. BOTONES
+   ========================================================= */
+.boton{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  min-height:52px;padding:.75rem 1.4rem;border-radius:999px;border:2px solid transparent;
+  font-family:var(--fuente-titulos);font-weight:700;font-size:1.1rem;line-height:1.1;
+  text-decoration:none;cursor:pointer;text-align:center;
+  transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+.boton:hover{transform:scale(1.03)}
+.boton:active{transform:scale(.97)}
+.boton-dorado{background:var(--dorado);color:var(--azul);box-shadow:0 4px 0 var(--dorado-oscuro)}
+.boton-dorado:hover{background:#D6A43C}
+.boton-azul{background:var(--azul);color:var(--blanco);box-shadow:0 4px 0 #050F27}
+.boton-azul:hover{background:var(--azul-medio)}
+.boton-borde{background:var(--blanco);color:var(--azul);border-color:var(--azul)}
+.boton-whatsapp{background:#1FAF55;color:var(--blanco);box-shadow:0 4px 0 #13813D}
+.boton-whatsapp:hover{background:#25C25F}
+.boton-bloque{width:100%}
+
+/* =========================================================
+   6. MATTY Y GLOBO DE DIÁLOGO
+   ========================================================= */
+@keyframes rebote{
+  0%{transform:translateY(18px) scale(.9);opacity:0}
+  55%{transform:translateY(-8px) scale(1.03);opacity:1}
+  75%{transform:translateY(2px)}
+  100%{transform:translateY(0) scale(1)}
+}
+@keyframes flotar{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.matty-rebota{animation:rebote .7s ease-out both, flotar 3.5s ease-in-out .8s infinite}
+.globo{
+  position:relative;background:var(--blanco);color:var(--azul);
+  border:2px solid var(--dorado);border-radius:16px;padding:.6rem .85rem;
+  font-weight:700;line-height:1.3;box-shadow:var(--sombra-suave);
+}
+
+/* Bienvenida: tarjeta principal azul */
+.hero{
+  background:linear-gradient(160deg,var(--azul) 0%,var(--azul-medio) 100%);
+  color:var(--blanco);text-align:center;overflow:hidden;
+}
+.hero h1{color:var(--blanco);font-size:2rem;margin-bottom:.25rem}
+.hero h1 span{color:var(--dorado)}
+.hero .subtitulo{color:#D7DEEE;margin:0 0 1rem;font-size:1.02rem}
+.hero-matty{display:flex;flex-direction:column;align-items:center;gap:.6rem;margin:.5rem 0 1rem}
+.hero-matty img{width:170px;height:auto;filter:drop-shadow(0 8px 12px rgba(0,0,0,.25))}
+.hero .globo{max-width:330px;font-size:1.05rem}
+.hero .globo::after{ /* colita del globo hacia Matty (abajo) */
+  content:"";position:absolute;left:50%;bottom:-10px;transform:translateX(-50%) rotate(45deg);
+  width:16px;height:16px;background:var(--blanco);border-right:2px solid var(--dorado);border-bottom:2px solid var(--dorado);
+}
+.hero-matty .globo{order:-1}
+@media (min-width:600px){
+  .hero h1{font-size:2.5rem}
+  .hero-matty{flex-direction:row;justify-content:center;gap:1.25rem}
+  .hero-matty .globo{order:1}
+  .hero .globo::after{left:-10px;top:50%;bottom:auto;transform:translateY(-50%) rotate(135deg)}
+}
+
+.datos-rapidos{list-style:none;padding:0;margin:0 0 1.25rem;display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.datos-rapidos li{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:.55rem .3rem;
+  font-size:.82rem;line-height:1.25;color:#EAF0FB
+}
+.datos-rapidos strong{display:block;font-family:var(--fuente-titulos);font-size:1.25rem;color:var(--dorado)}
+.nota-privacidad{font-size:.85rem;color:#C9D3E8;margin:.9rem 0 0}
+
+/* Formulario opcional */
+.formulario h2{font-size:1.35rem}
+.formulario p.ayuda{margin:0 0 1rem;color:var(--gris-suave);font-size:.95rem}
+.campo{margin-bottom:.85rem}
+.campo label{display:block;font-weight:800;color:var(--azul);margin-bottom:.3rem}
+.campo label small{font-weight:600;color:var(--gris-suave)}
+.campo input,.campo select{
+  width:100%;min-height:50px;padding:.6rem .85rem;border:2px solid #CDD5E6;border-radius:12px;
+  background:var(--blanco);color:var(--azul);font-size:1rem
+}
+.campo input:focus,.campo select:focus{border-color:var(--dorado);outline:none;box-shadow:0 0 0 3px rgba(200,150,46,.25)}
+
+/* Aviso para continuar un test guardado */
+.aviso-continuar{background:var(--dorado-claro);border:2px solid var(--dorado);}
+.aviso-continuar p{margin:0 0 .85rem;color:var(--azul);font-weight:700}
+.fila-botones{display:flex;flex-wrap:wrap;gap:.6rem}
+.fila-botones .boton{flex:1 1 200px}
+
+/* =========================================================
+   7. PANTALLA DEL TEST
+   ========================================================= */
+.cabecera-test{position:sticky;top:0;z-index:5;padding:.85rem 1rem}
+.cabecera-test .fila{display:flex;align-items:center;gap:.75rem}
+.cabecera-test .info{flex:1;min-width:0}
+.contador-pantalla{font-family:var(--fuente-titulos);font-weight:700;color:var(--azul);font-size:1.05rem;margin:0}
+.barra-progreso{height:14px;background:var(--azul-claro);border-radius:999px;overflow:hidden;margin:.35rem 0 .2rem}
+.barra-progreso-relleno{height:100%;width:0;background:linear-gradient(90deg,#B8861F,var(--dorado),#E0B456);border-radius:999px;transition:width .4s ease}
+.porcentaje-progreso{font-size:.85rem;font-weight:700;color:var(--dorado-oscuro)}
+.matty-mini{display:flex;align-items:center;gap:.4rem;flex-shrink:0;max-width:46%}
+.matty-mini .globo{font-size:.8rem;padding:.35rem .55rem;border-radius:12px}
+.matty-mini img{width:54px;height:auto}
+@media (min-width:600px){.matty-mini img{width:68px}.matty-mini .globo{font-size:.9rem}}
+
+.instruccion{font-size:.95rem;color:var(--gris-suave);margin:.2rem 0 1rem;text-align:center}
+.instruccion strong{color:var(--azul)}
+
+/* Cada pregunta */
+.pregunta{
+  border:2px solid transparent;border-radius:var(--radio);background:var(--blanco);box-shadow:var(--sombra-suave);
+  padding:1rem .8rem .9rem;margin:0 0 .85rem;transition:border-color .25s ease, background-color .25s ease;
+  scroll-margin-top:140px; /* que la cabecera fija no tape la pregunta al desplazarse */
+}
+.pregunta legend{
+  float:left;width:100%;padding:0;margin-bottom:.75rem;display:flex;align-items:flex-start;gap:.55rem;
+  font-weight:800;color:var(--azul);font-size:1.05rem;line-height:1.35;
+}
+.pregunta legend .numero{
+  display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;min-width:1.9rem;height:1.9rem;
+  border-radius:50%;background:var(--azul);color:var(--blanco);font-family:var(--fuente-titulos);font-size:.95rem;line-height:1
+}
+.pregunta legend .enunciado{padding-top:.15rem}
+.pregunta.falta{border-color:var(--dorado);background:var(--dorado-claro)}
+.pregunta.falta .enunciado::after{content:"Falta responder";display:block;color:var(--dorado-oscuro);font-size:.85rem;font-weight:700}
+.opciones{clear:both;display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem}
+.opcion{position:relative;display:block;cursor:pointer}
+.opcion input{position:absolute;opacity:0;width:100%;height:100%;inset:0;margin:0;cursor:pointer}
+.opcion .caja{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;
+  min-height:72px;padding:.4rem .15rem;border:2px solid #D5DCEB;border-radius:14px;background:var(--blanco);
+  text-align:center;transition:transform .12s ease,border-color .15s ease,background-color .15s ease;
+}
+.opcion .emoji{font-size:1.7rem;line-height:1}
+.opcion .texto{font-size:.74rem;font-weight:800;color:var(--gris-texto);line-height:1.1}
+.opcion:hover .caja{border-color:var(--dorado);transform:translateY(-2px)}
+.opcion input:checked + .caja{background:var(--azul);border-color:var(--azul);transform:scale(1.04)}
+.opcion input:checked + .caja .texto{color:var(--blanco)}
+.opcion input:focus-visible + .caja{outline:3px solid var(--dorado);outline-offset:2px}
+@media (min-width:600px){
+  .opcion .caja{min-height:84px}
+  .opcion .emoji{font-size:2rem}
+  .opcion .texto{font-size:.88rem}
+}
+
+.aviso-faltan{
+  background:var(--dorado-claro);border:2px solid var(--dorado);color:var(--azul);font-weight:700;
+  border-radius:14px;padding:.7rem .9rem;margin:0 0 .85rem;text-align:center
+}
+.navegacion-test{display:flex;gap:.6rem;margin-top:.5rem}
+.navegacion-test .boton{flex:1}
+
+/* =========================================================
+   8. RESULTADOS
+   ========================================================= */
+.resultado-cabecera{text-align:center}
+.resultado-cabecera .hero-matty img{width:150px}
+.resultado-cabecera h1{font-size:1.75rem}
+.etiqueta-codigo{margin:.4rem 0 .5rem;font-weight:800;color:var(--gris-suave);text-transform:uppercase;letter-spacing:.06em;font-size:.8rem}
+.codigo-holland{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:.35rem .3rem;margin-bottom:.5rem}
+.codigo-letra{display:flex;flex-direction:column;align-items:center;width:84px}
+.codigo-letra .circulo{
+  width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--fuente-titulos);font-weight:800;font-size:2.4rem;color:var(--azul);background:var(--dorado);
+  box-shadow:0 4px 0 var(--dorado-oscuro)
+}
+.codigo-letra .nombre{font-weight:800;color:var(--azul);font-size:.85rem;margin-top:.35rem}
+.codigo-separador{font-family:var(--fuente-titulos);font-weight:800;font-size:2rem;color:var(--azul);align-self:center;margin-top:-1.4rem}
+.codigo-separador.empate{color:var(--dorado-oscuro);font-size:1.6rem}
+.codigo-grupo{display:inline-flex;align-items:flex-start;gap:.3rem;flex-wrap:nowrap}
+@media (max-width:400px){
+  .codigo-letra{width:66px}
+  .codigo-letra .circulo{width:54px;height:54px;font-size:1.95rem}
+  .codigo-letra .nombre{font-size:.72rem}
+  .codigo-separador{font-size:1.6rem;margin-top:-1.2rem}
+  .codigo-grupo{gap:.15rem}
+}
+.nota-empate{background:var(--dorado-claro);border-radius:12px;padding:.6rem .8rem;color:var(--azul);font-weight:700;font-size:.92rem;margin:.5rem 0 0}
+
+/* Gráfico de barras */
+.grafico h2{font-size:1.35rem}
+.grafico p.ayuda{margin:0 0 1rem;color:var(--gris-suave);font-size:.92rem}
+.barras{list-style:none;margin:0;padding:0}
+.barra-fila{display:grid;grid-template-columns:8.3rem 1fr 2.9rem;align-items:center;gap:.45rem;margin-bottom:.6rem}
+.barra-etiqueta{font-weight:800;color:var(--azul);font-size:.86rem;line-height:1.15;white-space:nowrap}
+@media (min-width:600px){.barra-fila{grid-template-columns:9.5rem 1fr 3.2rem}.barra-etiqueta{font-size:.95rem}}
+.barra-etiqueta .letra{display:inline-block;width:1.5rem;height:1.5rem;border-radius:6px;text-align:center;color:var(--azul);margin-right:.3rem;font-family:var(--fuente-titulos);line-height:1.55rem}
+.barra-pista{height:22px;background:var(--azul-claro);border-radius:999px;overflow:hidden}
+.barra-relleno{height:100%;border-radius:999px;width:0;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.barra-valor{font-weight:800;color:var(--azul);text-align:right}
+.barra-fila.destacada .barra-etiqueta{color:var(--azul)}
+.barra-fila:not(.destacada){opacity:.75}
+
+/* Tarjetas de cada área principal */
+.tarjeta-area{border-top:8px solid var(--azul);padding-top:1.1rem}
+.tarjeta-area .titulo-area{display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem}
+.tarjeta-area .insignia{
+  width:52px;height:52px;flex-shrink:0;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--fuente-titulos);font-weight:800;font-size:1.8rem;color:var(--azul)
+}
+.tarjeta-area h3{font-size:1.4rem;margin:0}
+.tarjeta-area .lema{margin:0;color:var(--gris-suave);font-weight:700;font-size:.9rem}
+.tarjeta-area h4{font-family:var(--fuente-titulos);color:var(--azul);font-size:1.08rem;margin:1rem 0 .4rem}
+.tarjeta-area p{margin:0}
+.lista-habilidades{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;margin:0;padding:0}
+.lista-habilidades li{background:var(--azul-claro);color:var(--azul);font-weight:700;font-size:.88rem;border-radius:999px;padding:.3rem .75rem}
+.lista-carreras{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:.35rem}
+@media (min-width:520px){.lista-carreras{grid-template-columns:1fr 1fr}}
+.lista-carreras li{
+  display:flex;align-items:flex-start;gap:.45rem;background:var(--dorado-claro);border-radius:10px;padding:.45rem .65rem;
+  font-weight:700;color:var(--azul);font-size:.95rem;line-height:1.25
+}
+.lista-carreras li::before{content:"🎓";flex-shrink:0}
+
+.aviso-orientativo{
+  border-left:6px solid var(--dorado);background:var(--blanco);border-radius:12px;padding:.85rem 1rem;
+  font-weight:700;color:var(--azul);box-shadow:var(--sombra-suave);margin:0 0 1rem
+}
+.acciones-resultado{display:grid;gap:.75rem}
+
+.cierre-ovp{
+  background:linear-gradient(160deg,var(--azul) 0%,var(--azul-medio) 100%);color:var(--blanco);text-align:center
+}
+.cierre-ovp h2{color:var(--blanco);font-size:1.45rem}
+.cierre-ovp p{color:#DCE3F2;margin:0 0 1rem}
+.eslogan{font-family:var(--fuente-titulos);font-weight:800;color:var(--dorado);font-size:1.5rem;margin:.25rem 0 1rem}
+
+/* =========================================================
+   9. PIE DE PÁGINA
+   ========================================================= */
+.pie{background:var(--azul);color:#D7DEEE;font-size:.9rem;border-top:4px solid var(--dorado)}
+.pie-interno{max-width:760px;margin:0 auto;padding:1.5rem 1rem 2rem;text-align:center}
+.pie .marca{display:flex;align-items:center;justify-content:center;gap:.6rem;margin-bottom:.6rem}
+.pie .marca img{height:44px;width:auto;background:var(--blanco);border-radius:10px;padding:3px}
+.pie .marca strong{font-family:var(--fuente-titulos);color:var(--blanco);font-size:1.05rem;line-height:1.2;text-align:left}
+.pie p{margin:.3rem 0}
+.pie a{color:var(--dorado);font-weight:700;text-decoration:none}
+.pie a:hover{text-decoration:underline}
+.redes{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem .9rem;margin:.7rem 0}
+
+/* =========================================================
+   10. MOVIMIENTO REDUCIDO
+   ========================================================= */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  .boton:hover,.boton:active,.opcion:hover .caja,.opcion input:checked + .caja{transform:none}
+}
+
+/* =========================================================
+   11. HOJA DE IMPRESIÓN (Descargar mis resultados)
+   Solo se ve al imprimir / guardar como PDF.
+   ========================================================= */
+#hoja-impresion{display:none}
+@media print{
+  @page{size:A4;margin:11mm}
+  body{background:#fff;display:block;min-height:0}
+  body > *:not(#hoja-impresion){display:none !important}
+  #hoja-impresion{display:block;font-family:var(--fuente-texto);color:#1d2740;font-size:9.5pt;line-height:1.3}
+  #hoja-impresion *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .imp-cabecera{display:flex;align-items:center;justify-content:space-between;gap:10mm;border-bottom:2.5pt solid var(--dorado);padding-bottom:3mm;margin-bottom:4mm}
+  .imp-cabecera img{height:17mm;width:auto}
+  .imp-cabecera h1{font-size:17pt;margin:0;color:var(--azul)}
+  .imp-cabecera p{margin:0;font-size:9pt;color:#4a5570}
+  .imp-datos{text-align:right;font-size:9pt}
+  .imp-datos div{margin-bottom:.6mm}
+  .imp-codigo{display:flex;align-items:center;gap:5mm;background:var(--azul);color:#fff;border-radius:4mm;padding:3mm 5mm;margin-bottom:4mm}
+  .imp-codigo .rotulo{font-size:9pt;color:#cfd8ec;text-transform:uppercase;letter-spacing:.05em}
+  .imp-codigo .letras{font-family:var(--fuente-titulos);font-weight:800;font-size:24pt;color:var(--dorado);line-height:1}
+  .imp-codigo .nombres{font-size:10.5pt;font-weight:700}
+  .imp-seccion{font-family:var(--fuente-titulos);color:var(--azul);font-size:12pt;margin:0 0 2mm}
+  .imp-barras{margin-bottom:4mm}
+  .imp-barra{display:grid;grid-template-columns:30mm 1fr 12mm;align-items:center;gap:3mm;margin-bottom:1.4mm}
+  .imp-barra .pista{height:4mm;background:#E8EDF7;border-radius:2mm;overflow:hidden}
+  .imp-barra .relleno{height:100%;border-radius:2mm}
+  .imp-barra .nom{font-weight:700;color:var(--azul)}
+  .imp-barra .val{text-align:right;font-weight:800;color:var(--azul)}
+  .imp-areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:3mm;margin-bottom:4mm}
+  .imp-area{border:1pt solid #d5dcea;border-top:3mm solid var(--azul);border-radius:2.5mm;padding:2.5mm 3mm;break-inside:avoid}
+  .imp-area h3{font-size:11.5pt;margin:0 0 1mm;color:var(--azul)}
+  .imp-area p{margin:0 0 1.5mm;font-size:8.5pt}
+  .imp-area ul{margin:0;padding-left:4mm;font-size:8.8pt}
+  .imp-area li{margin-bottom:.4mm}
+  .imp-aviso{border-left:2mm solid var(--dorado);background:#FBF3E2;padding:2mm 3mm;font-weight:700;margin-bottom:3mm;font-size:9pt}
+  .imp-pie{border-top:1pt solid #d5dcea;padding-top:2mm;font-size:8pt;color:#4a5570;text-align:center}
+  .imp-pie strong{color:var(--azul)}
+}
+
+/* =========================================================
+   12. PARTE 2: APTITUDES
+   ========================================================= */
+.etiqueta-parte{
+  display:inline-block;background:var(--azul);color:var(--blanco);font-family:var(--fuente-titulos);font-weight:700;
+  font-size:.78rem;border-radius:999px;padding:.1rem .6rem;margin-bottom:.15rem;letter-spacing:.02em;white-space:nowrap
+}
+.partes{display:grid;gap:.6rem;margin:0 0 1rem;text-align:left}
+.parte-item{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:.7rem .85rem;color:#EAF0FB;font-size:.95rem}
+.parte-item strong{color:var(--dorado);font-family:var(--fuente-titulos);font-size:1.05rem;display:block}
+@media (min-width:600px){.partes{grid-template-columns:1fr 1fr}}
+
+.figura{
+  clear:both;text-align:center;font-size:1.7rem;letter-spacing:.35rem;color:var(--azul);font-weight:800;
+  background:var(--azul-claro);border-radius:12px;padding:.55rem .4rem;margin:0 0 .75rem;line-height:1.3;
+  font-variant-emoji:text;word-break:break-word
+}
+.opciones-apt{clear:both;display:grid;gap:.45rem}
+@media (min-width:520px){.opciones-apt{grid-template-columns:1fr 1fr}}
+.opcion-apt{position:relative;display:block;cursor:pointer}
+.opcion-apt input{position:absolute;opacity:0;width:100%;height:100%;inset:0;margin:0;cursor:pointer}
+.opcion-apt .caja-apt{
+  display:flex;align-items:center;gap:.6rem;min-height:54px;padding:.5rem .75rem;border:2px solid #D5DCEB;border-radius:14px;
+  background:var(--blanco);font-weight:700;color:var(--azul);line-height:1.25;transition:transform .12s ease,border-color .15s ease,background-color .15s ease
+}
+.opcion-apt .letra-op{
+  flex-shrink:0;width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:var(--azul-claro);color:var(--azul);font-family:var(--fuente-titulos);font-weight:800
+}
+.opcion-apt .texto-op{font-variant-emoji:text}
+.opcion-apt .texto-op.simbolo{font-size:1.6rem;line-height:1}
+[tabindex="-1"]:focus:not(:focus-visible){outline:none}
+#contador-pantalla:focus{outline:none}
+.opcion-apt.no-se .caja-apt{border-style:dashed;color:var(--gris-suave);font-weight:700}
+.opcion-apt:hover .caja-apt{border-color:var(--dorado)}
+.opcion-apt input:checked + .caja-apt{background:var(--azul);border-color:var(--azul);color:var(--blanco)}
+.opcion-apt input:checked + .caja-apt .letra-op{background:var(--dorado);color:var(--azul)}
+.opcion-apt input:focus-visible + .caja-apt{outline:3px solid var(--dorado);outline-offset:2px}
+@media (min-width:520px){.opcion-apt.no-se{grid-column:1 / -1}}
+
+/* Pausa entre partes */
+.pausa{text-align:center}
+.pausa .hero-matty img{width:150px}
+.pausa h1{color:var(--blanco);font-size:1.8rem}
+.pausa p.texto{color:#E3E9F5;margin:0 0 1rem}
+.pausa ul{list-style:none;padding:0;margin:0 0 1.1rem;text-align:left;display:grid;gap:.45rem}
+.pausa li{background:rgba(255,255,255,.1);border-radius:12px;padding:.55rem .8rem;color:#EAF0FB}
+
+/* Resultados de aptitudes */
+.aptitudes h2{font-size:1.35rem}
+.aptitudes p.ayuda{margin:0 0 1rem;color:var(--gris-suave);font-size:.92rem}
+.apt-fila{border:2px solid var(--azul-claro);border-radius:14px;padding:.75rem .85rem;margin-bottom:.65rem}
+.apt-cabecera{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.4rem}
+.apt-nombre{font-weight:800;color:var(--azul)}
+.apt-nivel{font-size:.8rem;font-weight:800;border-radius:999px;padding:.15rem .65rem;white-space:nowrap}
+.nivel-alto{background:#DDF3E9;color:#14613F}
+.nivel-medio{background:var(--dorado-claro);color:#7A560E}
+.nivel-desarrollo{background:#E8EDF7;color:var(--azul)}
+.apt-barra{display:flex;align-items:center;gap:.6rem}
+.apt-barra .barra-pista{flex:1}
+.apt-barra .valor{font-weight:800;color:var(--azul);min-width:3.2rem;text-align:right}
+.apt-texto{margin:.45rem 0 0;font-size:.93rem}
+
+.cruce h2{font-size:1.35rem}
+.cruce-item{display:flex;gap:.7rem;align-items:flex-start;padding:.7rem 0;border-bottom:1px dashed #D5DCEB}
+.cruce-item:last-child{border-bottom:0}
+.cruce-item .insignia{width:42px;height:42px;font-size:1.4rem;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--fuente-titulos);font-weight:800;color:var(--azul)}
+.cruce-item p{margin:0;font-size:.95rem}
+.cruce-item strong{color:var(--azul)}
+
+.revision summary{cursor:pointer;font-family:var(--fuente-titulos);font-weight:700;color:var(--azul);font-size:1.15rem;list-style-position:inside}
+.revision-grupo h3{font-size:1.1rem;margin:1rem 0 .4rem}
+.revision-item{border-left:4px solid var(--azul-claro);padding:.45rem .7rem;margin-bottom:.55rem;font-size:.92rem}
+.revision-item.bien{border-left-color:#3DAA78}
+.revision-item.mal{border-left-color:var(--dorado)}
+.revision-item p{margin:.15rem 0}
+.revision-item .rev-enunciado{font-weight:800;color:var(--azul);font-variant-emoji:text}
+.revision-item .rev-exp{color:var(--gris-suave)}
+
+/* Aptitudes en la hoja de impresión */
+@media print{
+  .imp-apt{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-bottom:4mm}
+  .imp-apt > div{border:1pt solid #d5dcea;border-left:2mm solid var(--dorado);border-radius:2.5mm;padding:1.8mm 3mm}
+  .imp-apt .n{font-weight:700;color:var(--azul);font-size:9pt}
+  .imp-apt .v{font-family:var(--fuente-titulos);font-size:13pt;font-weight:800;color:var(--azul);line-height:1.1}
+  .imp-apt .l{font-size:8.5pt;color:#4a5570}
+  #hoja-impresion .imp-seccion{margin-top:0}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===================== ENCABEZADO ===================== -->
+<header class="encabezado">
+  <div class="encabezado-interno">
+    <img src="logo.png" alt="Preuniversitario Equinoccio" onerror="this.style.display='none'">
+    <span class="etiqueta">Test Vocacional</span>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <!-- ===================== BIENVENIDA ===================== -->
+  <section id="pantalla-bienvenida" aria-labelledby="titulo-bienvenida">
+
+    <div class="tarjeta hero">
+      <h1 id="titulo-bienvenida" tabindex="-1">Test <span>Vocacional</span></h1>
+      <p class="subtitulo">Intereses + aptitudes: descubre qué carreras van contigo</p>
+
+      <div class="hero-matty">
+        <img class="matty-rebota" src="matty.png" alt="Matty, el quilico mascota del Pre Equinoccio" onerror="this.style.display='none'">
+        <p class="globo">¡Hola! Soy Matty. Te acompaño a descubrir qué carreras van contigo.</p>
+      </div>
+
+      <ul class="datos-rapidos">
+        <li><strong>2</strong>partes</li>
+        <li><strong>78</strong>preguntas</li>
+        <li><strong>~25</strong>minutos</li>
+      </ul>
+
+      <div class="partes">
+        <div class="parte-item"><strong>Parte 1 · Intereses</strong>60 actividades del día a día. Dices cuánto te gustan. Aquí no hay respuestas buenas ni malas.</div>
+        <div class="parte-item"><strong>Parte 2 · Aptitudes</strong>18 ejercicios cortos de razonamiento verbal, numérico y lógico-abstracto. Aquí sí hay respuestas correctas.</div>
+      </div>
+      <p style="margin:0;color:#EAF0FB">Ten a mano papel y lápiz (sin calculadora). Responde con calma y con sinceridad.</p>
+      <p class="nota-privacidad">🔒 Tus respuestas se quedan en tu celular: no se envían a ningún lado.</p>
+    </div>
+
+    <!-- Aviso si hay un test a medias guardado -->
+    <div id="aviso-continuar" class="tarjeta aviso-continuar oculto" role="status">
+      <p id="texto-continuar">Tienes un test a medias. ¿Quieres seguir donde te quedaste?</p>
+      <div class="fila-botones">
+        <button type="button" class="boton boton-azul" id="btn-continuar">Continuar mi test</button>
+        <button type="button" class="boton boton-borde" id="btn-empezar-de-nuevo">Empezar de nuevo</button>
+      </div>
+    </div>
+
+    <form class="tarjeta formulario" id="form-datos" novalidate>
+      <h2>Antes de empezar</h2>
+      <p class="ayuda">Estos datos son opcionales. Solo sirven para poner tu nombre en tus resultados.</p>
+
+      <div class="campo">
+        <label for="campo-nombre">Nombre o apodo <small>(opcional)</small></label>
+        <input id="campo-nombre" name="nombre" type="text" maxlength="40" autocomplete="given-name" placeholder="Ej.: Dani">
+      </div>
+      <div class="campo">
+        <label for="campo-colegio">Colegio <small>(opcional)</small></label>
+        <input id="campo-colegio" name="colegio" type="text" maxlength="70" autocomplete="off" placeholder="Ej.: U.E. Calderón">
+      </div>
+      <div class="campo">
+        <label for="campo-curso">Curso <small>(opcional)</small></label>
+        <select id="campo-curso" name="curso">
+          <option value="">Prefiero no decir</option>
+          <option value="2.º BGU">2.º de Bachillerato (BGU)</option>
+          <option value="3.º BGU">3.º de Bachillerato (BGU)</option>
+          <option value="Graduado">Ya me gradué</option>
+        </select>
+      </div>
+
+      <button type="submit" class="boton boton-dorado boton-bloque">¡Empezar test! 🚀</button>
+    </form>
+  </section>
+
+  <!-- ===================== TEST (Parte 1 y Parte 2) ===================== -->
+  <section id="pantalla-test" class="oculto" aria-labelledby="contador-pantalla">
+
+    <div class="tarjeta cabecera-test">
+      <div class="fila">
+        <div class="info">
+          <span class="etiqueta-parte" id="etiqueta-parte">Parte 1 · Intereses</span>
+          <h2 class="contador-pantalla" id="contador-pantalla" tabindex="-1">Pantalla 1 de 6</h2>
+          <div class="barra-progreso" role="progressbar" aria-label="Avance del test" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="barra-progreso">
+            <div class="barra-progreso-relleno" id="barra-progreso-relleno"></div>
+          </div>
+          <span class="porcentaje-progreso" id="porcentaje-progreso">0 % completado</span>
+        </div>
+        <div class="matty-mini" aria-live="polite">
+          <p class="globo" id="frase-matty">¡Arrancamos! 😉</p>
+          <img id="matty-mini-img" src="matty.png" alt="" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+
+    <p class="instruccion" id="instruccion">¿Qué tanto te gustaría hacer cada actividad? <strong>Elige una opción por pregunta.</strong></p>
+
+    <form id="form-preguntas" novalidate>
+      <div id="contenedor-preguntas"></div>
+      <p id="aviso-faltan" class="aviso-faltan oculto" role="alert"></p>
+      <div class="navegacion-test">
+        <button type="button" class="boton boton-borde" id="btn-anterior">← Anterior</button>
+        <button type="submit" class="boton boton-dorado" id="btn-siguiente">Siguiente →</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- ===================== PAUSA ENTRE PARTES ===================== -->
+  <section id="pantalla-pausa" class="oculto" aria-labelledby="titulo-pausa">
+    <div class="tarjeta hero pausa">
+      <div class="hero-matty">
+        <img class="matty-rebota" src="matty.png" alt="Matty" onerror="this.style.display='none'">
+        <p class="globo">¡Parte 1 lista! Ya sé lo que te gusta. Ahora veamos en qué eres fuerte 💪</p>
+      </div>
+      <h1 id="titulo-pausa" tabindex="-1">Parte 2 · Aptitudes</h1>
+      <p class="texto">Son 18 ejercicios cortos, en 3 pantallas. Te toman unos 10 minutos.</p>
+      <ul>
+        <li>📖 <strong>Razonamiento verbal</strong>: palabras, analogías y lectura.</li>
+        <li>🔢 <strong>Razonamiento numérico</strong>: series, porcentajes y problemas.</li>
+        <li>🧩 <strong>Razonamiento lógico-abstracto</strong>: figuras, patrones y deducciones.</li>
+        <li>✏️ Usa papel y lápiz, sin calculadora.</li>
+        <li>🤷 Si no sabes una, elige <strong>“No lo sé”</strong>: es mejor que adivinar.</li>
+      </ul>
+      <div class="fila-botones">
+        <button type="button" class="boton boton-dorado" id="btn-ir-parte2">¡Vamos a la Parte 2! 🚀</button>
+        <button type="button" class="boton boton-borde" id="btn-volver-parte1">← Volver a la Parte 1</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RESULTADOS ===================== -->
+  <section id="pantalla-resultados" class="oculto" aria-labelledby="titulo-resultados">
+
+    <div class="tarjeta resultado-cabecera">
+      <div class="hero-matty">
+        <img class="matty-rebota" src="matty.png" alt="Matty celebrando" onerror="this.style.display='none'">
+        <p class="globo" id="saludo-resultado">¡Listo! Este es tu perfil. 🎉</p>
+      </div>
+      <h1 id="titulo-resultados" tabindex="-1">Tu código Holland</h1>
+      <p class="etiqueta-codigo">Tus intereses más fuertes</p>
+      <div class="codigo-holland" id="codigo-holland"></div>
+      <p class="nota-empate oculto" id="nota-empate"></p>
+    </div>
+
+    <div class="tarjeta grafico">
+      <h2>Tus intereses en las 6 áreas</h2>
+      <p class="ayuda">Cada barra muestra cuánto te atraen las actividades de esa área (de 0 a 100 %).</p>
+      <ol class="barras" id="grafico-barras"></ol>
+    </div>
+
+    <div id="tarjetas-areas"></div>
+
+    <div class="tarjeta aptitudes">
+      <h2>Tus aptitudes</h2>
+      <p class="ayuda">Resultado de los 18 ejercicios de la Parte 2 (6 por aptitud).</p>
+      <div id="lista-aptitudes"></div>
+    </div>
+
+    <div class="tarjeta cruce">
+      <h2>Intereses + aptitudes</h2>
+      <div id="lista-cruce"></div>
+    </div>
+
+    <details class="tarjeta revision">
+      <summary>Revisa tus respuestas de la Parte 2</summary>
+      <div id="lista-revision"></div>
+    </details>
+
+    <p class="aviso-orientativo">⚠️ Este test es orientativo y no reemplaza una evaluación vocacional completa con un profesional. La Parte 2 es una muestra corta de aptitudes, no un examen completo.</p>
+
+    <div class="tarjeta">
+      <div class="acciones-resultado">
+        <button type="button" class="boton boton-azul boton-bloque" id="btn-descargar">📄 Descargar mis resultados</button>
+        <a class="boton boton-whatsapp boton-bloque" id="btn-whatsapp" href="#" target="_blank" rel="noopener">💬 Enviar mis resultados a Equinoccio por WhatsApp</a>
+        <button type="button" class="boton boton-borde boton-bloque" id="btn-reiniciar">🔄 Volver a hacer el test</button>
+      </div>
+    </div>
+
+    <div class="tarjeta cierre-ovp">
+      <h2>¿Quieres una orientación más completa?</h2>
+      <p>En el Pre Equinoccio te acompañamos con nuestra <strong>OVP + IA</strong>: orientación vocacional profesional para que elijas tu carrera con seguridad. Y si quieres medir tus aptitudes a fondo, pregunta por nuestro próximo <strong>Simulador Gratuito</strong>.</p>
+      <p class="eslogan">“Juntos, aseguremos tu futuro”</p>
+      <a class="boton boton-dorado" id="btn-info-ovp" href="#" target="_blank" rel="noopener">Quiero información de la OVP</a>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== PIE DE PÁGINA ===================== -->
+<footer class="pie">
+  <div class="pie-interno">
+    <div class="marca">
+      <img src="logo.png" alt="" onerror="this.style.display='none'">
+      <strong>Preuniversitario Equinoccio<br><span style="color:var(--dorado);font-size:.9rem">Soluciones Académicas</span></strong>
+    </div>
+    <p>📍 Cacha XV N5-174 y Capitán Geovanny Calles, Plaza Apolo, tercer piso, Cuatro Esquinas, Calderón, Quito.</p>
+    <div class="redes">
+      <a href="https://www.instagram.com/preuequinoccio2026/" target="_blank" rel="noopener">Instagram @preuequinoccio2026</a>
+      <a href="https://www.tiktok.com/@pre.equinoccio" target="_blank" rel="noopener">TikTok @pre.equinoccio</a>
+      <a href="https://www.facebook.com/profile.php?id=61594527186811" target="_blank" rel="noopener">Facebook</a>
+    </div>
+    <p>✉️ <a href="mailto:ecequinoccioedu@gmail.com">ecequinoccioedu@gmail.com</a> · 🗺️ <a href="https://maps.app.goo.gl/2wMfznLsfCdVXxtL6" target="_blank" rel="noopener">Cómo llegar</a></p>
+  </div>
+</footer>
+
+<!-- ===================== HOJA PARA IMPRIMIR / PDF ===================== -->
+<div id="hoja-impresion" aria-hidden="true"></div>
+
+<script>
+/* =====================================================================
+   TEST VOCACIONAL – PREUNIVERSITARIO EQUINOCCIO
+   Parte 1: Intereses (modelo RIASEC de John Holland) · 60 preguntas
+   Parte 2: Aptitudes (verbal, numérica, lógico-abstracta) · 18 ejercicios
+
+   ✏️ ZONA EDITABLE: todo lo que está entre esta línea y "FIN DE LA ZONA
+   EDITABLE" se puede cambiar sin tocar el resto del código.
+   ===================================================================== */
+
+/* Número de WhatsApp de Equinoccio, con el 593 y sin el 0 inicial ni espacios.
+   098 558 1849  →  593985581849 */
+const WHATSAPP_EQUINOCCIO = "593985581849";
+
+/* ---------------- PARTE 1: INTERESES ---------------- */
+
+/* Escala de respuesta (valor = puntos que suma) */
+const OPCIONES = [
+  { valor: 3, emoji: "😍", texto: "Me encanta" },
+  { valor: 2, emoji: "🙂", texto: "Me gusta" },
+  { valor: 1, emoji: "😐", texto: "Me da igual" },
+  { valor: 0, emoji: "🙁", texto: "No me gusta" }
+];
+
+/* Las 6 áreas RIASEC: textos del resultado y carreras sugeridas.
+   - "color": solo se usa en los gráficos.
+   - "aptitudesClave": aptitudes de la Parte 2 que más ayudan en esa área (V, N, L).
+   - "carreras": 8 carreras que se ofertan en universidades e institutos de Ecuador. */
+const AREAS = {
+  R: {
+    nombre: "Realista",
+    lema: "Hacer, construir y reparar",
+    color: "#E58A6B",
+    descripcion: "Te gusta hacer cosas con tus manos y ver resultados concretos. Disfrutas trabajar con herramientas, máquinas, plantas o animales, y prefieres moverte antes que pasar todo el día detrás de un escritorio.",
+    habilidades: ["Destreza manual", "Sentido práctico", "Resolver problemas técnicos", "Buena coordinación física"],
+    aptitudesClave: ["L", "N"],
+    carreras: [
+      "Ingeniería Civil",
+      "Ingeniería Mecánica",
+      "Electricidad",
+      "Agronomía",
+      "Medicina Veterinaria",
+      "Ingeniería Ambiental",
+      "Geología",
+      "Tecnología Superior en Mecánica Automotriz"
+    ]
+  },
+  I: {
+    nombre: "Investigador",
+    lema: "Analizar, investigar y descubrir",
+    color: "#5B9BE0",
+    descripcion: "Eres curioso: quieres saber el porqué de las cosas. Te gusta observar, investigar y resolver problemas que exigen pensar con calma, sobre todo en ciencias y matemáticas.",
+    habilidades: ["Pensamiento lógico", "Curiosidad científica", "Concentración", "Interpretar datos"],
+    aptitudesClave: ["N", "L"],
+    carreras: [
+      "Medicina",
+      "Bioquímica y Farmacia",
+      "Biotecnología",
+      "Biología",
+      "Física",
+      "Matemática",
+      "Química",
+      "Computación"
+    ]
+  },
+  A: {
+    nombre: "Artístico",
+    lema: "Crear, diseñar y expresar",
+    color: "#B48AE0",
+    descripcion: "Tienes imaginación y necesitas expresarte. Te sientes a gusto creando algo nuevo con imágenes, sonidos, palabras o movimiento, y prefieres espacios con libertad antes que reglas rígidas.",
+    habilidades: ["Creatividad", "Sensibilidad estética", "Expresión oral, escrita o visual", "Originalidad"],
+    aptitudesClave: ["L", "V"],
+    carreras: [
+      "Arquitectura",
+      "Diseño Gráfico",
+      "Artes Plásticas",
+      "Música",
+      "Artes Escénicas",
+      "Cine",
+      "Comunicación",
+      "Diseño de Interiores"
+    ]
+  },
+  S: {
+    nombre: "Social",
+    lema: "Ayudar, enseñar y cuidar",
+    color: "#4FB892",
+    descripcion: "Te nace ayudar. Disfrutas enseñar, escuchar y acompañar a otras personas, y te sientes bien cuando ves que tu apoyo cambió algo en la vida de alguien.",
+    habilidades: ["Empatía", "Comunicación", "Trabajo en equipo", "Paciencia"],
+    aptitudesClave: ["V"],
+    carreras: [
+      "Psicología",
+      "Enfermería",
+      "Educación Inicial",
+      "Educación Básica",
+      "Trabajo Social",
+      "Fisioterapia",
+      "Obstetricia",
+      "Pedagogía de la Actividad Física y Deporte"
+    ]
+  },
+  E: {
+    nombre: "Emprendedor",
+    lema: "Liderar, convencer y emprender",
+    color: "#EDA94A",
+    descripcion: "Te gusta tomar la iniciativa, convencer a otros y sacar adelante proyectos. Te motivan los retos, las metas claras y la idea de liderar un equipo o tener tu propio negocio.",
+    habilidades: ["Liderazgo", "Persuasión", "Toma de decisiones", "Iniciativa"],
+    aptitudesClave: ["V", "N"],
+    carreras: [
+      "Administración de Empresas",
+      "Derecho",
+      "Mercadotecnia",
+      "Comercio Exterior",
+      "Economía",
+      "Turismo",
+      "Relaciones Internacionales",
+      "Ciencias Políticas"
+    ]
+  },
+  C: {
+    nombre: "Convencional",
+    lema: "Organizar, calcular y administrar",
+    color: "#8394B3",
+    descripcion: "Eres ordenado y confiable. Te sientes cómodo cuando hay un plan, reglas claras y datos que organizar, y eres de los que notan los errores que otros pasan por alto.",
+    habilidades: ["Organización", "Atención al detalle", "Manejo de números y datos", "Responsabilidad"],
+    aptitudesClave: ["N"],
+    carreras: [
+      "Contabilidad y Auditoría",
+      "Finanzas",
+      "Estadística",
+      "Sistemas de Información",
+      "Administración Pública",
+      "Ingeniería Industrial",
+      "Tecnología Superior en Contabilidad",
+      "Tecnología Superior en Administración"
+    ]
+  }
+};
+
+/* Las 60 preguntas de intereses: 10 por área. Puedes cambiar el texto de
+   cualquiera, pero mantén SIEMPRE 10 por área para que los porcentajes sean correctos. */
+const PREGUNTAS = {
+  R: [
+    "Armar o reparar una bicicleta",
+    "Cambiar un foco o arreglar un enchufe en casa (con la luz cortada)",
+    "Sembrar y cuidar plantas en un huerto",
+    "Ayudar a construir o pintar una pared",
+    "Revisar el motor de una moto o de un carro con alguien que sabe",
+    "Armar un mueble siguiendo las instrucciones",
+    "Acampar y caminar por el páramo o la montaña",
+    "Cuidar animales en una finca o en una granja",
+    "Usar herramientas como taladro, martillo o sierra",
+    "Instalar una cámara de seguridad o un parlante con sus cables"
+  ],
+  I: [
+    "Hacer experimentos en el laboratorio de Química o Biología",
+    "Resolver un problema difícil de Matemáticas hasta encontrar la respuesta",
+    "Ver documentales sobre el espacio, el cuerpo humano o los volcanes",
+    "Investigar cómo funciona algo, por ejemplo, cómo vuela un avión",
+    "Leer sobre enfermedades y cómo se curan",
+    "Programar en la computadora un juego o una app sencilla",
+    "Buscar en varias fuentes para comprobar si una noticia es verdad",
+    "Observar insectos, plantas o animales y anotar lo que descubres",
+    "Resolver acertijos, sudokus o problemas de lógica",
+    "Presentar un proyecto propio en una feria de ciencias"
+  ],
+  A: [
+    "Dibujar, pintar o hacer ilustraciones",
+    "Tocar un instrumento o cantar",
+    "Escribir cuentos, poemas o letras de canciones",
+    "Editar videos para TikTok o YouTube",
+    "Actuar en una obra de teatro o en un sketch",
+    "Diseñar un logo, un afiche o la portada de un trabajo",
+    "Decorar un espacio: tu cuarto, el aula o una fiesta",
+    "Tomar fotos creativas con el celular",
+    "Bailar o inventar una coreografía",
+    "Diseñar ropa o personalizar tus zapatos y accesorios"
+  ],
+  S: [
+    "Explicarle a un compañero un tema que no entendió",
+    "Escuchar y aconsejar a un amigo que tiene un problema",
+    "Cuidar a niños pequeños o a una persona mayor",
+    "Participar en un voluntariado o en una campaña solidaria",
+    "Dar primeros auxilios a alguien que se lastimó",
+    "Ayudar a que dos amigos peleados se reconcilien",
+    "Dar clases de refuerzo a niños de la escuela",
+    "Recibir y guiar a los estudiantes nuevos del colegio",
+    "Acompañar a alguien al centro de salud y ayudarle con sus trámites",
+    "Enseñarles a tus papás o abuelos a usar el celular"
+  ],
+  E: [
+    "Vender algo (dulces, ropa, rifas) para reunir dinero",
+    "Ser presidente del curso o del consejo estudiantil",
+    "Convencer a tu grupo de que elija tu idea",
+    "Organizar un evento: una fiesta, un campeonato o una casa abierta",
+    "Crear tu propio emprendimiento o negocio",
+    "Hablar en público frente a todo el colegio",
+    "Negociar un buen precio en el mercado o en una tienda",
+    "Dirigir a un equipo para terminar un proyecto a tiempo",
+    "Participar en un debate defendiendo tu postura",
+    "Promocionar un producto en redes sociales para que más gente lo compre"
+  ],
+  C: [
+    "Organizar los gastos de una salida con amigos",
+    "Llevar tus notas y tareas en una agenda o en una tabla",
+    "Ordenar archivos, carpetas o documentos",
+    "Hacer tablas y cálculos en Excel",
+    "Ser el tesorero del curso y cuidar el dinero",
+    "Revisar que un trabajo no tenga errores de ortografía ni de cálculo",
+    "Hacer el inventario de los productos de una tienda",
+    "Seguir paso a paso un procedimiento ordenado",
+    "Llenar formularios o registros con mucho cuidado",
+    "Armar un horario de estudio y cumplirlo"
+  ]
+};
+
+/* Orden FIJO e intercalado de las preguntas de intereses (no aleatorio, para
+   que todos respondan lo mismo en el mismo orden). En la vuelta 1 se toma la
+   pregunta 1 de cada área en el orden del primer patrón; en la vuelta 2, la
+   pregunta 2 con el segundo patrón; y así hasta 10. Ninguna área sale seguida. */
+const PATRONES_ORDEN = [
+  "RIASEC", "SECRIA", "ICSARE", "ARECSI", "ESIRCA",
+  "CAREIS", "RESIAC", "SCIAER", "EICRSA", "CRAIES"
+];
+
+/* ---------------- PARTE 2: APTITUDES ---------------- */
+
+/* Las 3 aptitudes y los textos que se muestran según el nivel obtenido.
+   Niveles: 5-6 aciertos = Alto · 3-4 = Medio · 0-2 = En desarrollo */
+const APTITUDES = {
+  V: {
+    nombre: "Razonamiento verbal",
+    corto: "Verbal",
+    icono: "📖",
+    textos: {
+      alto: "Entiendes bien el significado de las palabras y las ideas de un texto. Es una gran base para carreras donde se lee, se escribe y se argumenta.",
+      medio: "Tienes una base aceptable. Leer más y ampliar tu vocabulario te ayudará a subir de nivel rápido.",
+      desarrollo: "Es una aptitud que se entrena: con lectura diaria y práctica de sinónimos, antónimos y analogías se mejora mucho."
+    }
+  },
+  N: {
+    nombre: "Razonamiento numérico",
+    corto: "Numérico",
+    icono: "🔢",
+    textos: {
+      alto: "Manejas bien las operaciones, las series y los problemas con números. Es clave para ingenierías, ciencias y carreras de negocios.",
+      medio: "Vas bien en lo básico. Practicar porcentajes, proporciones y problemas te dará más seguridad.",
+      desarrollo: "Es una aptitud que se entrena: repasar operaciones, porcentajes y reglas de tres hace una gran diferencia."
+    }
+  },
+  L: {
+    nombre: "Razonamiento lógico-abstracto",
+    corto: "Lógico-abstracto",
+    icono: "🧩",
+    textos: {
+      alto: "Detectas patrones y sacas conclusiones con facilidad. Esto ayuda en carreras técnicas, científicas y de diseño.",
+      medio: "Encuentras varios patrones. Con ejercicios de series y figuras puedes afinar todavía más.",
+      desarrollo: "Es una aptitud que se entrena: practicar series de figuras, letras y acertijos mejora mucho tu razonamiento."
+    }
+  }
+};
+
+/* Los 18 ejercicios: 6 por aptitud. Cada uno tiene:
+   - enunciado: la pregunta.
+   - figura (opcional): una serie o dibujo que se muestra en grande.
+   - opciones: 4 respuestas.
+   - correcta: posición de la respuesta correcta (0 = primera, 1 = segunda, 2 = tercera, 3 = cuarta).
+   - explicacion: se muestra al final, en "Revisa tus respuestas". */
+const EJERCICIOS = {
+  V: [
+    { enunciado: "¿Cuál es el sinónimo de EFÍMERO?",
+      opciones: ["Duradero", "Eficaz", "Pasajero", "Enorme"], correcta: 2,
+      explicacion: "Efímero es algo que dura poco tiempo, es decir, pasajero." },
+    { enunciado: "¿Cuál es el antónimo (lo contrario) de ESCASO?",
+      opciones: ["Abundante", "Poco", "Raro", "Pequeño"], correcta: 0,
+      explicacion: "Escaso es que hay poco; lo contrario es abundante." },
+    { enunciado: "LIBRO es a BIBLIOTECA como CUADRO es a…",
+      opciones: ["Pintor", "Marco", "Color", "Museo"], correcta: 3,
+      explicacion: "Los libros se guardan en una biblioteca; los cuadros se exhiben en un museo." },
+    { enunciado: "Completa la oración: «Llovía tanto que el partido tuvo que ________».",
+      opciones: ["celebrarse", "suspenderse", "ganarse", "adelantarse"], correcta: 1,
+      explicacion: "La lluvia fuerte es una causa lógica para suspender un partido." },
+    { enunciado: "¿Qué palabra NO pertenece al grupo?",
+      opciones: ["Guitarra", "Violín", "Tambor", "Charango"], correcta: 2,
+      explicacion: "La guitarra, el violín y el charango son instrumentos de cuerda; el tambor es de percusión." },
+    { enunciado: "Lee: «Matty salió temprano para no llegar tarde al simulador, pero el bus se demoró y llegó justo a tiempo». ¿Qué se puede afirmar?",
+      opciones: ["Matty llegó tarde al simulador.", "A pesar del retraso del bus, Matty llegó a tiempo.", "Matty no salió temprano.", "El simulador empezó tarde."], correcta: 1,
+      explicacion: "El texto dice que el bus se demoró, pero que Matty llegó justo a tiempo. Las demás opciones contradicen el texto o no se mencionan." }
+  ],
+  N: [
+    { enunciado: "¿Qué número sigue en la serie?", figura: "3, 6, 12, 24, ?",
+      opciones: ["36", "30", "48", "42"], correcta: 2,
+      explicacion: "Cada número se multiplica por 2: 24 × 2 = 48." },
+    { enunciado: "Un celular cuesta $200 y tiene un descuento del 15 %. ¿Cuánto pagas?",
+      opciones: ["$185", "$175", "$150", "$170"], correcta: 3,
+      explicacion: "El 15 % de 200 es 30. Entonces, 200 − 30 = 170." },
+    { enunciado: "Si 4 cuadernos cuestan $6, ¿cuánto cuestan 10 cuadernos?",
+      opciones: ["$15", "$12", "$16", "$24"], correcta: 0,
+      explicacion: "Cada cuaderno cuesta 6 ÷ 4 = $1,50. Entonces, 10 × 1,50 = $15." },
+    { enunciado: "¿Cuál es el promedio de 7, 8, 9 y 10?",
+      opciones: ["8", "9", "8,5", "8,25"], correcta: 2,
+      explicacion: "Se suman (7 + 8 + 9 + 10 = 34) y se divide para 4: 34 ÷ 4 = 8,5." },
+    { enunciado: "Ana tiene el doble de la edad de Luis. Entre los dos suman 36 años. ¿Cuántos años tiene Ana?",
+      opciones: ["12", "24", "18", "26"], correcta: 1,
+      explicacion: "Si Luis tiene x, Ana tiene 2x. Entonces 3x = 36, x = 12. Ana tiene 2 × 12 = 24." },
+    { enunciado: "¿Qué número sigue en la serie?", figura: "2, 5, 10, 17, 26, ?",
+      opciones: ["35", "36", "39", "37"], correcta: 3,
+      explicacion: "Se suma 3, 5, 7, 9… (números impares). Después de sumar 9 toca sumar 11: 26 + 11 = 37." }
+  ],
+  L: [
+    { enunciado: "¿Qué figura sigue en la serie?", figura: "▲ ■ ● ▲ ■ ● ▲ ?",
+      opciones: ["●", "▲", "■", "◆"], correcta: 2,
+      explicacion: "Se repite el grupo triángulo – cuadrado – círculo. Después del triángulo va el cuadrado." },
+    { enunciado: "La flecha gira siempre igual. ¿Cuál sigue?", figura: "↑ → ↓ ← ↑ ?",
+      opciones: ["→", "←", "↓", "↑"], correcta: 0,
+      explicacion: "La flecha gira un cuarto de vuelta en el sentido de las manecillas del reloj: después de ↑ viene →." },
+    { enunciado: "▲ es a ▼ como ◀︎ es a…",
+      opciones: ["◀︎", "▶︎", "▲", "▼"], correcta: 1,
+      explicacion: "La figura se invierte: apunta hacia el lado contrario. Lo contrario de ◀︎ es ▶︎." },
+    { enunciado: "«Todos los quilicos son aves. Matty es un quilico». Entonces, con seguridad:",
+      opciones: ["Todas las aves son quilicos.", "Matty no puede volar.", "Matty es un ave.", "No se puede saber nada."], correcta: 2,
+      explicacion: "Si todos los quilicos son aves y Matty es un quilico, Matty es un ave. Lo contrario (que todas las aves sean quilicos) no se deduce." },
+    { enunciado: "¿Qué sigue en la serie?", figura: "Z1, Y2, X3, W4, ?",
+      opciones: ["V6", "U5", "W5", "V5"], correcta: 3,
+      explicacion: "Las letras van hacia atrás en el abecedario (Z, Y, X, W, V) y los números suben de 1 en 1 (5)." },
+    { enunciado: "En un código secreto, ROJO se escribe SPKP. ¿Cómo se escribe AZUL?",
+      opciones: ["BAVM", "BYVM", "ZAVM", "BAUM"], correcta: 0,
+      explicacion: "Cada letra se cambia por la siguiente del abecedario: A→B, Z→A (vuelve al inicio), U→V, L→M." }
+  ]
+};
+
+/* Frases de Matty en cada pantalla (6 de intereses + 3 de aptitudes) */
+const FRASES_MATTY = [
+  "¡Arrancamos! 😉",
+  "¡Vas muy bien! 🙌",
+  "¡Sigue así! 🔥",
+  "¡Ya vas por la mitad! 💪",
+  "¡Ya falta poco! ⚡",
+  "¡Última de la Parte 1! 🏁",
+  "¡A leer con calma! 📖",
+  "¡Números a la vista! 🔢",
+  "¡Último reto! 🧩"
+];
+
+/* ===================== FIN DE LA ZONA EDITABLE ===================== */
+
+
+/* ---------------------------------------------------------------------
+   CONSTANTES Y ESTADO
+   --------------------------------------------------------------------- */
+const ORDEN_AREAS = ["R", "I", "A", "S", "E", "C"];   // también desempata
+const ORDEN_APTITUDES = ["V", "N", "L"];
+const POR_PANTALLA = 10;
+const MAX_POR_AREA = 10 * 3;                            // 10 preguntas × 3 puntos = 30
+const NO_SE = -1;                                       // valor guardado para "No lo sé"
+const CLAVE_GUARDADO = "equinoccio_test_vocacional_v2";
+
+/* Parte 1: lista de 60 preguntas en orden intercalado [{id:"R1", area:"R", texto}] */
+const LISTA_PREGUNTAS = construirOrden();
+/* Parte 2: lista de 18 ejercicios [{id:"V1", aptitud:"V", ...}] */
+const LISTA_EJERCICIOS = [];
+ORDEN_APTITUDES.forEach(function (a) {
+  EJERCICIOS[a].forEach(function (e, i) { LISTA_EJERCICIOS.push(Object.assign({ id: a + (i + 1), aptitud: a }, e)); });
+});
+
+/* Todas las pantallas del test, en orden */
+const PANTALLAS = [];
+for (let i = 0; i < LISTA_PREGUNTAS.length; i += POR_PANTALLA) {
+  PANTALLAS.push({ tipo: "intereses", items: LISTA_PREGUNTAS.slice(i, i + POR_PANTALLA) });
+}
+const PANTALLAS_PARTE1 = PANTALLAS.length;              // 6
+ORDEN_APTITUDES.forEach(function (a) {
+  PANTALLAS.push({ tipo: "aptitud", aptitud: a, items: LISTA_EJERCICIOS.filter(function (e) { return e.aptitud === a; }) });
+});
+const PANTALLAS_PARTE2 = PANTALLAS.length - PANTALLAS_PARTE1; // 3
+const TOTAL_ITEMS = LISTA_PREGUNTAS.length + LISTA_EJERCICIOS.length; // 78
+
+let estado = estadoInicial();
+
+function estadoInicial() {
+  return {
+    etapa: "bienvenida",          // "bienvenida" | "test" | "pausa" | "resultados"
+    pantalla: 0,                  // 0 a 8
+    respuestas: {},               // Parte 1: { "R1": 3, ... }
+    aptitudes: {},                // Parte 2: { "V1": 2, "N3": -1 (No lo sé), ... }
+    datos: { nombre: "", colegio: "", curso: "" },
+    fecha: null
+  };
+}
+
+/* ---------------------------------------------------------------------
+   ORDEN INTERCALADO + COMPROBACIÓN DE DATOS
+   --------------------------------------------------------------------- */
+function construirOrden() {
+  const lista = [];
+  for (let vuelta = 0; vuelta < 10; vuelta++) {
+    for (const area of PATRONES_ORDEN[vuelta]) {
+      lista.push({ id: area + (vuelta + 1), area: area, texto: PREGUNTAS[area][vuelta] });
+    }
+  }
+  return lista;
+}
+
+/* Si al editar te equivocas, aparecerá un aviso en la consola del navegador (F12). */
+(function comprobarDatos() {
+  ORDEN_AREAS.forEach(function (a) {
+    if (!PREGUNTAS[a] || PREGUNTAS[a].length !== 10) console.warn("⚠️ El área " + a + " debe tener exactamente 10 preguntas.");
+    if (!AREAS[a] || AREAS[a].carreras.length !== 8) console.warn("⚠️ El área " + a + " debería tener 8 carreras.");
+  });
+  PATRONES_ORDEN.forEach(function (p, i) {
+    if (p.length !== 6 || ORDEN_AREAS.some(function (a) { return p.indexOf(a) === -1; })) console.warn("⚠️ El patrón de orden " + (i + 1) + " debe tener las 6 letras RIASEC una sola vez.");
+  });
+  ORDEN_APTITUDES.forEach(function (a) {
+    if (!EJERCICIOS[a] || EJERCICIOS[a].length !== 6) console.warn("⚠️ La aptitud " + a + " debe tener exactamente 6 ejercicios.");
+    (EJERCICIOS[a] || []).forEach(function (e, i) {
+      if (e.opciones.length !== 4 || e.correcta < 0 || e.correcta > 3) console.warn("⚠️ Revisa el ejercicio " + a + (i + 1) + ": necesita 4 opciones y 'correcta' entre 0 y 3.");
+    });
+  });
+})();
+
+/* ---------------------------------------------------------------------
+   GUARDADO LOCAL (localStorage). Todo va en try/catch porque algunos
+   navegadores (modo incógnito, apps dentro de Instagram/TikTok) lo bloquean.
+   --------------------------------------------------------------------- */
+function guardar() {
+  try { localStorage.setItem(CLAVE_GUARDADO, JSON.stringify(estado)); } catch (e) { /* sin guardado, no pasa nada */ }
+}
+function cargar() {
+  try {
+    const texto = localStorage.getItem(CLAVE_GUARDADO);
+    if (!texto) return null;
+    const dato = JSON.parse(texto);
+    if (!dato || typeof dato !== "object" || !dato.respuestas) return null;
+    return dato;
+  } catch (e) { return null; }
+}
+function borrarGuardado() {
+  try { localStorage.removeItem(CLAVE_GUARDADO); } catch (e) { /* nada */ }
+}
+
+/* ---------------------------------------------------------------------
+   UTILIDADES
+   --------------------------------------------------------------------- */
+const $ = function (id) { return document.getElementById(id); };
+function crear(etiqueta, clase, texto) {
+  const el = document.createElement(etiqueta);
+  if (clase) el.className = clase;
+  if (texto !== undefined) el.textContent = texto;
+  return el;
+}
+function respuestaDe(item) {
+  return item.aptitud ? estado.aptitudes[item.id] : estado.respuestas[item.id];
+}
+function contarRespondidas() {
+  return LISTA_PREGUNTAS.filter(function (p) { return estado.respuestas[p.id] !== undefined; }).length +
+         LISTA_EJERCICIOS.filter(function (e) { return estado.aptitudes[e.id] !== undefined; }).length;
+}
+function aclararColor(hex, mezcla) { // mezcla con blanco (0 = igual, 1 = blanco)
+  const n = parseInt(hex.slice(1), 16);
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  const f = function (c) { return Math.round(c + (255 - c) * mezcla); };
+  return "rgb(" + f(r) + "," + f(g) + "," + f(b) + ")";
+}
+function listaConY(nombres) {
+  return nombres.length === 1 ? nombres[0] : nombres.slice(0, -1).join(", ") + " y " + nombres[nombres.length - 1];
+}
+function reducirMovimiento() {
+  return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function mostrarEtapa(etapa) {
+  estado.etapa = etapa;
+  $("pantalla-bienvenida").classList.toggle("oculto", etapa !== "bienvenida");
+  $("pantalla-test").classList.toggle("oculto", etapa !== "test");
+  $("pantalla-pausa").classList.toggle("oculto", etapa !== "pausa");
+  $("pantalla-resultados").classList.toggle("oculto", etapa !== "resultados");
+  window.scrollTo(0, 0);
+}
+
+/* ---------------------------------------------------------------------
+   BIENVENIDA
+   --------------------------------------------------------------------- */
+let etapaGuardada = null;
+
+function prepararBienvenida() {
+  const guardado = cargar();
+  const aviso = $("aviso-continuar");
+  if (guardado && (Object.keys(guardado.respuestas).length > 0 || guardado.fecha)) {
+    etapaGuardada = guardado.etapa;
+    estado = Object.assign(estadoInicial(), guardado);
+    estado.datos = Object.assign({ nombre: "", colegio: "", curso: "" }, estado.datos);
+    estado.aptitudes = estado.aptitudes || {};
+    $("campo-nombre").value = estado.datos.nombre || "";
+    $("campo-colegio").value = estado.datos.colegio || "";
+    $("campo-curso").value = estado.datos.curso || "";
+    if (guardado.fecha) {
+      $("texto-continuar").textContent = "Ya terminaste el test en este celular. ¿Quieres ver tus resultados otra vez?";
+      $("btn-continuar").textContent = "Ver mis resultados";
+    } else {
+      $("texto-continuar").textContent = "Tienes un test a medias (" + contarRespondidas() + " de " + TOTAL_ITEMS + " preguntas). ¿Quieres seguir donde te quedaste?";
+      $("btn-continuar").textContent = "Continuar mi test";
+    }
+    aviso.classList.remove("oculto");
+  } else {
+    etapaGuardada = null;
+    aviso.classList.add("oculto");
+  }
+  mostrarEtapa("bienvenida");
+}
+
+function leerDatosFormulario() {
+  estado.datos = {
+    nombre: $("campo-nombre").value.trim(),
+    colegio: $("campo-colegio").value.trim(),
+    curso: $("campo-curso").value
+  };
+}
+
+$("form-datos").addEventListener("submit", function (ev) {
+  ev.preventDefault();
+  leerDatosFormulario();
+  // Si ya había terminado un test, "Empezar" arranca uno nuevo (conserva nombre/colegio/curso).
+  // Si tenía uno a medias, se respeta su avance.
+  if (estado.fecha) {
+    const datos = estado.datos;
+    estado = estadoInicial();
+    estado.datos = datos;
+    etapaGuardada = null;
+  }
+  continuarDesdeGuardado();
+});
+
+$("btn-continuar").addEventListener("click", function () {
+  leerDatosFormulario();
+  if (estado.fecha) { mostrarResultados(); }
+  else { continuarDesdeGuardado(); }
+});
+
+function continuarDesdeGuardado() {
+  if (etapaGuardada === "pausa") mostrarPausa();
+  else iniciarTest();
+}
+
+$("btn-empezar-de-nuevo").addEventListener("click", function () {
+  borrarGuardado();
+  estado = estadoInicial();
+  etapaGuardada = null;
+  $("form-datos").reset();
+  $("aviso-continuar").classList.add("oculto");
+  $("campo-nombre").focus();
+});
+
+/* ---------------------------------------------------------------------
+   TEST
+   --------------------------------------------------------------------- */
+function iniciarTest() {
+  if (estado.pantalla < 0 || estado.pantalla >= PANTALLAS.length) estado.pantalla = 0;
+  mostrarEtapa("test");
+  pintarPantalla();
+  guardar();
+}
+
+function pintarPantalla() {
+  const n = estado.pantalla;
+  const pantalla = PANTALLAS[n];
+  const contenedor = $("contenedor-preguntas");
+  contenedor.innerHTML = "";
+  $("aviso-faltan").classList.add("oculto");
+
+  // Número de la primera pregunta de esta pantalla (contando las anteriores)
+  let numero = 0;
+  for (let i = 0; i < n; i++) numero += PANTALLAS[i].items.length;
+
+  if (pantalla.tipo === "intereses") {
+    pantalla.items.forEach(function (p) { numero++; contenedor.appendChild(crearPreguntaInteres(p, numero)); });
+    $("etiqueta-parte").textContent = "Parte 1 · Intereses";
+    $("contador-pantalla").textContent = "Pantalla " + (n + 1) + " de " + PANTALLAS_PARTE1;
+    $("instruccion").innerHTML = "¿Qué tanto te gustaría hacer cada actividad? <strong>Elige una opción por pregunta.</strong>";
+  } else {
+    pantalla.items.forEach(function (e) { numero++; contenedor.appendChild(crearEjercicio(e, numero)); });
+    const apt = APTITUDES[pantalla.aptitud];
+    $("etiqueta-parte").textContent = "Parte 2 · Aptitudes";
+    $("contador-pantalla").textContent = apt.icono + " " + apt.corto.replace(/-/g, "\u2011") + " · " + (n - PANTALLAS_PARTE1 + 1) + " de " + PANTALLAS_PARTE2;
+    $("instruccion").innerHTML = "Elige la respuesta correcta. <strong>Si no sabes, marca “No lo sé”.</strong> Sin calculadora 😉";
+  }
+
+  $("frase-matty").textContent = FRASES_MATTY[n] || "¡Tú puedes!";
+  const ultima = n === PANTALLAS.length - 1;
+  const finParte1 = n === PANTALLAS_PARTE1 - 1;
+  $("btn-siguiente").textContent = ultima ? "Ver mis resultados 🎉" : (finParte1 ? "Terminar Parte 1 ✅" : "Siguiente →");
+  $("btn-anterior").textContent = (n === 0) ? "← Inicio" : "← Anterior";
+
+  // Matty "rebota" cada vez que cambia de pantalla
+  const mini = $("matty-mini-img");
+  mini.classList.remove("matty-rebota");
+  void mini.offsetWidth;
+  mini.classList.add("matty-rebota");
+
+  actualizarProgreso();
+  window.scrollTo(0, 0);
+  $("contador-pantalla").focus({ preventScroll: true });
+}
+
+/* Pregunta de intereses (escala de 4 emojis) */
+function crearPreguntaInteres(p, numero) {
+  const fs = crear("fieldset", "pregunta");
+  fs.id = "pregunta-" + p.id;
+  fs.appendChild(crearLegend(numero, p.texto));
+
+  const opciones = crear("div", "opciones");
+  OPCIONES.forEach(function (op) {
+    const label = crear("label", "opcion");
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.name = p.id;
+    input.value = String(op.valor);
+    if (estado.respuestas[p.id] === op.valor) input.checked = true;
+    input.addEventListener("change", function () {
+      estado.respuestas[p.id] = op.valor;
+      fs.classList.remove("falta");
+      actualizarProgreso();
+      guardar();
+    });
+    const caja = crear("span", "caja");
+    const emoji = crear("span", "emoji", op.emoji);
+    emoji.setAttribute("aria-hidden", "true");
+    caja.appendChild(emoji);
+    caja.appendChild(crear("span", "texto", op.texto));
+    label.appendChild(input);
+    label.appendChild(caja);
+    opciones.appendChild(label);
+  });
+  fs.appendChild(opciones);
+  return fs;
+}
+
+/* Ejercicio de aptitudes (4 opciones A-D + "No lo sé") */
+function crearEjercicio(e, numero) {
+  const fs = crear("fieldset", "pregunta pregunta-apt");
+  fs.id = "pregunta-" + e.id;
+  fs.appendChild(crearLegend(numero, e.enunciado));
+
+  if (e.figura) {
+    const fig = crear("div", "figura", e.figura);
+    fig.setAttribute("aria-label", "Serie: " + e.figura);
+    fs.appendChild(fig);
+  }
+
+  const opciones = crear("div", "opciones-apt");
+  const letras = ["A", "B", "C", "D"];
+  const lista = e.opciones.map(function (t, i) { return { valor: i, letra: letras[i], texto: t }; });
+  lista.push({ valor: NO_SE, letra: "🤷", texto: "No lo sé" });
+
+  lista.forEach(function (op) {
+    const label = crear("label", "opcion-apt" + (op.valor === NO_SE ? " no-se" : ""));
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.name = e.id;
+    input.value = String(op.valor);
+    if (estado.aptitudes[e.id] === op.valor) input.checked = true;
+    input.addEventListener("change", function () {
+      estado.aptitudes[e.id] = op.valor;
+      fs.classList.remove("falta");
+      actualizarProgreso();
+      guardar();
+    });
+    const caja = crear("span", "caja-apt");
+    const letra = crear("span", "letra-op", op.letra);
+    letra.setAttribute("aria-hidden", "true");
+    caja.appendChild(letra);
+    // Si la opción es solo un símbolo (▲, ■, →…), se muestra más grande
+    const esSimbolo = op.valor !== NO_SE && op.texto.replace(/\uFE0E/g, "").length <= 2 && !/[0-9a-záéíóúñ]/i.test(op.texto);
+    caja.appendChild(crear("span", "texto-op" + (esSimbolo ? " simbolo" : ""), op.texto));
+    label.appendChild(input);
+    label.appendChild(caja);
+    opciones.appendChild(label);
+  });
+  fs.appendChild(opciones);
+  return fs;
+}
+
+function crearLegend(numero, texto) {
+  const legend = crear("legend");
+  const circulo = crear("span", "numero", String(numero));
+  circulo.setAttribute("aria-hidden", "true");
+  legend.appendChild(circulo);
+  const enunciado = crear("span", "enunciado", texto);
+  enunciado.appendChild(crear("span", "solo-lectores", " (pregunta " + numero + " de " + TOTAL_ITEMS + ")"));
+  legend.appendChild(enunciado);
+  return legend;
+}
+
+function actualizarProgreso() {
+  const pct = Math.round(contarRespondidas() / TOTAL_ITEMS * 100);
+  $("barra-progreso-relleno").style.width = pct + "%";
+  $("barra-progreso").setAttribute("aria-valuenow", String(pct));
+  $("porcentaje-progreso").textContent = pct + " % completado";
+}
+
+$("form-preguntas").addEventListener("submit", function (ev) {
+  ev.preventDefault();
+  const pantalla = PANTALLAS[estado.pantalla];
+  const faltan = pantalla.items.filter(function (it) { return respuestaDe(it) === undefined; });
+
+  if (faltan.length > 0) {
+    faltan.forEach(function (it) { $("pregunta-" + it.id).classList.add("falta"); });
+    const aviso = $("aviso-faltan");
+    aviso.textContent = faltan.length === 1
+      ? "Te falta 1 pregunta. Está marcada en dorado 👆"
+      : "Te faltan " + faltan.length + " preguntas. Están marcadas en dorado 👆";
+    aviso.classList.remove("oculto");
+    const primera = $("pregunta-" + faltan[0].id);
+    primera.scrollIntoView({ behavior: reducirMovimiento() ? "auto" : "smooth", block: "center" });
+    primera.querySelector("input").focus({ preventScroll: true });
+    return;
+  }
+
+  if (estado.pantalla === PANTALLAS_PARTE1 - 1) {
+    mostrarPausa();
+  } else if (estado.pantalla < PANTALLAS.length - 1) {
+    estado.pantalla++;
+    pintarPantalla();
+    guardar();
+  } else {
+    estado.fecha = new Date().toISOString();
+    mostrarResultados();
+  }
+});
+
+$("btn-anterior").addEventListener("click", function () {
+  if (estado.pantalla === PANTALLAS_PARTE1) {
+    mostrarPausa();
+  } else if (estado.pantalla > 0) {
+    estado.pantalla--;
+    pintarPantalla();
+    guardar();
+  } else {
+    prepararBienvenida();
+  }
+});
+
+/* ---------------------------------------------------------------------
+   PAUSA ENTRE LA PARTE 1 Y LA PARTE 2
+   --------------------------------------------------------------------- */
+function mostrarPausa() {
+  estado.pantalla = PANTALLAS_PARTE1 - 1;
+  mostrarEtapa("pausa");
+  guardar();
+  $("titulo-pausa").focus({ preventScroll: true });
+}
+$("btn-ir-parte2").addEventListener("click", function () {
+  estado.pantalla = PANTALLAS_PARTE1;
+  iniciarTest();
+});
+$("btn-volver-parte1").addEventListener("click", function () {
+  estado.pantalla = PANTALLAS_PARTE1 - 1;
+  iniciarTest();
+});
+
+/* ---------------------------------------------------------------------
+   CÁLCULO DE RESULTADOS
+   Intereses: puntaje por área = suma de sus 10 respuestas (0 a 30);
+              porcentaje = puntaje ÷ 30 × 100 (redondeado).
+              Código Holland = las 3 áreas con más puntaje; si hay empate
+              en el borde, se incluyen todas las áreas empatadas.
+   Aptitudes: aciertos de 0 a 6 por aptitud ("No lo sé" cuenta 0);
+              porcentaje = aciertos ÷ 6 × 100.
+              Nivel: 5-6 Alto · 3-4 Medio · 0-2 En desarrollo.
+   --------------------------------------------------------------------- */
+function calcularIntereses() {
+  const puntajes = {};
+  ORDEN_AREAS.forEach(function (a) { puntajes[a] = 0; });
+  LISTA_PREGUNTAS.forEach(function (p) {
+    const v = estado.respuestas[p.id];
+    if (typeof v === "number") puntajes[p.area] += v;
+  });
+
+  const areas = ORDEN_AREAS.map(function (a) {
+    return { letra: a, puntaje: puntajes[a], porcentaje: Math.round(puntajes[a] / MAX_POR_AREA * 100) };
+  });
+  areas.sort(function (x, y) { return (y.puntaje - x.puntaje) || (ORDEN_AREAS.indexOf(x.letra) - ORDEN_AREAS.indexOf(y.letra)); });
+
+  const umbral = areas[2].puntaje;
+  const principales = areas.filter(function (a) { return a.puntaje >= umbral; });
+
+  const grupos = [];
+  principales.forEach(function (a) {
+    const ultimo = grupos[grupos.length - 1];
+    if (ultimo && ultimo[0].puntaje === a.puntaje) ultimo.push(a);
+    else grupos.push([a]);
+  });
+
+  const codigoTexto = grupos.map(function (g) { return g.map(function (a) { return a.letra; }).join("/"); }).join("-");
+  const codigoNombres = grupos.map(function (g) { return g.map(function (a) { return AREAS[a.letra].nombre; }).join(" = "); }).join(", ");
+
+  return { areas: areas, principales: principales, grupos: grupos, codigoTexto: codigoTexto, codigoNombres: codigoNombres };
+}
+
+function calcularAptitudes() {
+  const resultado = {};
+  ORDEN_APTITUDES.forEach(function (a) {
+    const items = LISTA_EJERCICIOS.filter(function (e) { return e.aptitud === a; });
+    const aciertos = items.filter(function (e) { return estado.aptitudes[e.id] === e.correcta; }).length;
+    const total = items.length;
+    let nivel = "desarrollo";
+    if (aciertos >= 5) nivel = "alto";
+    else if (aciertos >= 3) nivel = "medio";
+    resultado[a] = { aciertos: aciertos, total: total, porcentaje: Math.round(aciertos / total * 100), nivel: nivel };
+  });
+  return resultado;
+}
+const NOMBRE_NIVEL = { alto: "Alto", medio: "Medio", desarrollo: "En desarrollo" };
+
+/* ---------------------------------------------------------------------
+   PANTALLA DE RESULTADOS
+   --------------------------------------------------------------------- */
+function mostrarResultados() {
+  const r = calcularIntereses();
+  const apt = calcularAptitudes();
+  const nombre = estado.datos.nombre;
+  const todoCero = r.areas[0].puntaje === 0;
+
+  $("saludo-resultado").textContent = nombre ? "¡Listo, " + nombre + "! Este es tu perfil. 🎉" : "¡Listo! Este es tu perfil. 🎉";
+
+  // --- Código Holland grande (cada grupo con su guion va junto) ---
+  const cod = $("codigo-holland");
+  cod.innerHTML = "";
+  cod.setAttribute("aria-label", "Tu código Holland es " + r.codigoTexto.replace(/-/g, ", ") + ": " + r.codigoNombres);
+  r.grupos.forEach(function (g, gi) {
+    const grupo = crear("span", "codigo-grupo");
+    if (gi > 0) grupo.appendChild(crear("span", "codigo-separador", "–"));
+    g.forEach(function (a, ai) {
+      if (ai > 0) grupo.appendChild(crear("span", "codigo-separador empate", "="));
+      const caja = crear("span", "codigo-letra");
+      caja.appendChild(crear("span", "circulo", a.letra));
+      caja.appendChild(crear("span", "nombre", AREAS[a.letra].nombre));
+      grupo.appendChild(caja);
+    });
+    cod.appendChild(grupo);
+  });
+
+  // --- Nota de empate ---
+  const nota = $("nota-empate");
+  const gruposEmpatados = r.grupos.filter(function (g) { return g.length > 1; });
+  if (todoCero) {
+    nota.textContent = "Parece que ninguna actividad te llamó mucho la atención, ¡y no pasa nada! Conversar con un orientador te puede ayudar a descubrir lo que te mueve.";
+    nota.classList.remove("oculto");
+  } else if (gruposEmpatados.length) {
+    const frases = gruposEmpatados.map(function (g) { return listaConY(g.map(function (a) { return AREAS[a.letra].nombre; })); });
+    nota.textContent = "Hay empate entre " + frases.join("; y entre ") + ": tienen el mismo puntaje, así que cuentan por igual." +
+      (r.principales.length > 3 ? " Por eso te mostramos " + r.principales.length + " áreas en lugar de 3." : "");
+    nota.classList.remove("oculto");
+  } else {
+    nota.classList.add("oculto");
+  }
+
+  // --- Gráfico de barras de intereses (de mayor a menor) ---
+  const lista = $("grafico-barras");
+  lista.innerHTML = "";
+  const letrasPrincipales = r.principales.map(function (a) { return a.letra; });
+  r.areas.forEach(function (a) {
+    const info = AREAS[a.letra];
+    const li = crear("li", "barra-fila" + (letrasPrincipales.indexOf(a.letra) !== -1 ? " destacada" : ""));
+    li.setAttribute("aria-label", info.nombre + ": " + a.porcentaje + " por ciento");
+    const et = crear("span", "barra-etiqueta");
+    const letra = crear("span", "letra", a.letra);
+    letra.style.background = aclararColor(info.color, .55);
+    et.appendChild(letra);
+    et.appendChild(document.createTextNode(info.nombre));
+    li.appendChild(et);
+    li.appendChild(crearBarra(a.porcentaje, info.color));
+    li.appendChild(crear("span", "barra-valor", a.porcentaje + " %"));
+    lista.appendChild(li);
+  });
+
+  // --- Tarjetas de las áreas principales ---
+  const tarjetas = $("tarjetas-areas");
+  tarjetas.innerHTML = "";
+  r.principales.forEach(function (a, i) {
+    const info = AREAS[a.letra];
+    const art = crear("article", "tarjeta tarjeta-area");
+    art.style.borderTopColor = info.color;
+
+    const titulo = crear("div", "titulo-area");
+    const insignia = crear("span", "insignia", a.letra);
+    insignia.style.background = aclararColor(info.color, .5);
+    insignia.setAttribute("aria-hidden", "true");
+    const textos = crear("div");
+    textos.appendChild(crear("h3", "", (i + 1) + ". " + info.nombre));
+    textos.appendChild(crear("p", "lema", info.lema + " · " + a.porcentaje + " %"));
+    titulo.appendChild(insignia);
+    titulo.appendChild(textos);
+    art.appendChild(titulo);
+
+    art.appendChild(crear("p", "", info.descripcion));
+
+    art.appendChild(crear("h4", "", "Habilidades que suelen tener las personas con este perfil"));
+    const ulH = crear("ul", "lista-habilidades");
+    info.habilidades.forEach(function (h) { ulH.appendChild(crear("li", "", h)); });
+    art.appendChild(ulH);
+
+    art.appendChild(crear("h4", "", "Carreras que podrías explorar en Ecuador"));
+    const ulC = crear("ul", "lista-carreras");
+    info.carreras.forEach(function (c) { ulC.appendChild(crear("li", "", c)); });
+    art.appendChild(ulC);
+
+    tarjetas.appendChild(art);
+  });
+
+  // --- Aptitudes ---
+  const listaApt = $("lista-aptitudes");
+  listaApt.innerHTML = "";
+  ORDEN_APTITUDES.forEach(function (a) {
+    const info = APTITUDES[a], res = apt[a];
+    const fila = crear("div", "apt-fila");
+    const cab = crear("div", "apt-cabecera");
+    cab.appendChild(crear("span", "apt-nombre", info.icono + " " + info.nombre));
+    cab.appendChild(crear("span", "apt-nivel nivel-" + res.nivel, NOMBRE_NIVEL[res.nivel]));
+    fila.appendChild(cab);
+    const barra = crear("div", "apt-barra");
+    barra.setAttribute("aria-label", info.nombre + ": " + res.aciertos + " de " + res.total + " aciertos");
+    barra.appendChild(crearBarra(res.porcentaje, "#C8962E"));
+    barra.appendChild(crear("span", "valor", res.aciertos + " / " + res.total));
+    fila.appendChild(barra);
+    fila.appendChild(crear("p", "apt-texto", info.textos[res.nivel]));
+    listaApt.appendChild(fila);
+  });
+
+  // --- Cruce intereses + aptitudes ---
+  const cruce = $("lista-cruce");
+  cruce.innerHTML = "";
+  r.principales.forEach(function (a) {
+    const info = AREAS[a.letra];
+    const claves = info.aptitudesClave;
+    const item = crear("div", "cruce-item");
+    const ins = crear("span", "insignia", a.letra);
+    ins.style.background = aclararColor(info.color, .5);
+    ins.setAttribute("aria-hidden", "true");
+    item.appendChild(ins);
+
+    const p = crear("p");
+    const fuerte = crear("strong", "", info.nombre + ": ");
+    p.appendChild(fuerte);
+    const detalle = claves.map(function (k) { return APTITUDES[k].corto.toLowerCase() + " (" + NOMBRE_NIVEL[apt[k].nivel].toLowerCase() + ")"; });
+    let texto = "aquí ayuda mucho el razonamiento " + listaConY(detalle) + ". ";
+    const enDesarrollo = claves.filter(function (k) { return apt[k].nivel === "desarrollo"; });
+    const todasAltas = claves.every(function (k) { return apt[k].nivel === "alto"; });
+    if (todasAltas) texto += "¡Tienes muy buena base para este camino! 💪";
+    else if (enDesarrollo.length) texto += "Si este camino te atrae, vale la pena entrenar el razonamiento " + listaConY(enDesarrollo.map(function (k) { return APTITUDES[k].corto.toLowerCase(); })) + ": con práctica se mejora mucho.";
+    else texto += "Vas bien; con práctica puedes llegar todavía más lejos.";
+    p.appendChild(document.createTextNode(texto));
+    item.appendChild(p);
+    cruce.appendChild(item);
+  });
+
+  // --- Revisión de respuestas de la Parte 2 ---
+  const rev = $("lista-revision");
+  rev.innerHTML = "";
+  const letras = ["A", "B", "C", "D"];
+  ORDEN_APTITUDES.forEach(function (a) {
+    const grupo = crear("div", "revision-grupo");
+    grupo.appendChild(crear("h3", "", APTITUDES[a].icono + " " + APTITUDES[a].nombre));
+    LISTA_EJERCICIOS.filter(function (e) { return e.aptitud === a; }).forEach(function (e) {
+      const elegida = estado.aptitudes[e.id];
+      const bien = elegida === e.correcta;
+      const it = crear("div", "revision-item " + (bien ? "bien" : "mal"));
+      it.appendChild(crear("p", "rev-enunciado", e.enunciado + (e.figura ? "  " + e.figura : "")));
+      const tuya = (elegida === undefined || elegida === NO_SE) ? "No lo sé" : letras[elegida] + ") " + e.opciones[elegida];
+      it.appendChild(crear("p", "", (bien ? "✅ " : "❌ ") + "Tu respuesta: " + tuya));
+      if (!bien) it.appendChild(crear("p", "", "Respuesta correcta: " + letras[e.correcta] + ") " + e.opciones[e.correcta]));
+      it.appendChild(crear("p", "rev-exp", e.explicacion));
+      grupo.appendChild(it);
+    });
+    rev.appendChild(grupo);
+  });
+
+  // --- Enlaces de WhatsApp ---
+  $("btn-whatsapp").href = enlaceWhatsApp(mensajeResultados(r, apt));
+  $("btn-info-ovp").href = enlaceWhatsApp("Hola Preuniversitario Equinoccio 👋 Hice el Test Vocacional y quiero información sobre la OVP + IA.");
+
+  // --- Hoja de impresión ---
+  prepararImpresion(r, apt);
+
+  mostrarEtapa("resultados");
+  guardar();
+  $("titulo-resultados").focus({ preventScroll: true });
+
+  // Animar las barras después de mostrarlas
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      document.querySelectorAll("#pantalla-resultados .barra-relleno").forEach(function (b) { b.style.width = b.dataset.ancho; });
+    });
+  });
+}
+
+function crearBarra(porcentaje, color) {
+  const pista = crear("span", "barra-pista");
+  pista.style.display = "block";
+  const relleno = crear("span", "barra-relleno");
+  relleno.style.display = "block";
+  relleno.style.background = color;
+  relleno.dataset.ancho = porcentaje + "%";
+  pista.appendChild(relleno);
+  return pista;
+}
+
+function enlaceWhatsApp(texto) {
+  return "https://wa.me/" + WHATSAPP_EQUINOCCIO + "?text=" + encodeURIComponent(texto);
+}
+
+function mensajeResultados(r, apt) {
+  const d = estado.datos;
+  const aptTexto = ORDEN_APTITUDES.map(function (a) {
+    return APTITUDES[a].corto + " " + apt[a].aciertos + "/" + apt[a].total + " (" + NOMBRE_NIVEL[apt[a].nivel] + ")";
+  }).join(" · ");
+  return [
+    "Hola Preuniversitario Equinoccio 👋 Hice el Test Vocacional y estos son mis resultados:",
+    "",
+    "• Nombre: " + (d.nombre || "No indicado"),
+    "• Colegio: " + (d.colegio || "No indicado"),
+    "• Curso: " + (d.curso || "No indicado"),
+    "• Mi código Holland: " + r.codigoTexto + " (" + r.codigoNombres + ")",
+    "• Aptitudes: " + aptTexto,
+    "",
+    "Me gustaría recibir información sobre la OVP + IA."
+  ].join("\n");
+}
+
+/* ---------------------------------------------------------------------
+   HOJA DE IMPRESIÓN (una sola hoja A4)
+   --------------------------------------------------------------------- */
+function prepararImpresion(r, apt) {
+  const d = estado.datos;
+  const hoja = $("hoja-impresion");
+  hoja.innerHTML = "";
+  const fecha = new Date(estado.fecha || Date.now()).toLocaleDateString("es-EC", { day: "numeric", month: "long", year: "numeric" });
+
+  // Cabecera
+  const cab = crear("div", "imp-cabecera");
+  const izq = crear("div");
+  izq.style.display = "flex"; izq.style.alignItems = "center"; izq.style.gap = "4mm";
+  const logo = document.createElement("img");
+  logo.src = "logo.png"; logo.alt = "";
+  logo.onerror = function () { this.style.display = "none"; };
+  izq.appendChild(logo);
+  const tit = crear("div");
+  tit.appendChild(crear("h1", "", "Resultado del Test Vocacional"));
+  tit.appendChild(crear("p", "", "Preuniversitario Equinoccio – Soluciones Académicas · Intereses (RIASEC de Holland) y aptitudes"));
+  izq.appendChild(tit);
+  cab.appendChild(izq);
+  const datos = crear("div", "imp-datos");
+  datos.appendChild(crear("div", "", "Nombre: " + (d.nombre || "—")));
+  datos.appendChild(crear("div", "", "Colegio: " + (d.colegio || "—")));
+  datos.appendChild(crear("div", "", "Curso: " + (d.curso || "—")));
+  datos.appendChild(crear("div", "", "Fecha: " + fecha));
+  cab.appendChild(datos);
+  hoja.appendChild(cab);
+
+  // Código
+  const codigo = crear("div", "imp-codigo");
+  const c1 = crear("div");
+  c1.appendChild(crear("div", "rotulo", "Código Holland"));
+  c1.appendChild(crear("div", "letras", r.codigoTexto.replace(/-/g, " – ")));
+  codigo.appendChild(c1);
+  codigo.appendChild(crear("div", "nombres", r.codigoNombres));
+  hoja.appendChild(codigo);
+
+  // Barras de intereses
+  hoja.appendChild(crear("h2", "imp-seccion", "Intereses por área"));
+  const barras = crear("div", "imp-barras");
+  r.areas.forEach(function (a) {
+    const fila = crear("div", "imp-barra");
+    fila.appendChild(crear("span", "nom", a.letra + " · " + AREAS[a.letra].nombre));
+    const pista = crear("div", "pista");
+    const rel = crear("div", "relleno");
+    rel.style.width = a.porcentaje + "%";
+    rel.style.background = AREAS[a.letra].color;
+    pista.appendChild(rel);
+    fila.appendChild(pista);
+    fila.appendChild(crear("span", "val", a.porcentaje + " %"));
+    barras.appendChild(fila);
+  });
+  hoja.appendChild(barras);
+
+  // Aptitudes
+  hoja.appendChild(crear("h2", "imp-seccion", "Aptitudes (muestra de 18 ejercicios)"));
+  const cajaApt = crear("div", "imp-apt");
+  ORDEN_APTITUDES.forEach(function (a) {
+    const c = crear("div");
+    c.appendChild(crear("div", "n", APTITUDES[a].nombre));
+    c.appendChild(crear("div", "v", apt[a].aciertos + " / " + apt[a].total));
+    c.appendChild(crear("div", "l", "Nivel: " + NOMBRE_NIVEL[apt[a].nivel]));
+    cajaApt.appendChild(c);
+  });
+  hoja.appendChild(cajaApt);
+
+  // Áreas principales y carreras
+  hoja.appendChild(crear("h2", "imp-seccion", "Tus áreas principales y carreras sugeridas"));
+  const cont = crear("div", "imp-areas");
+  r.principales.forEach(function (a) {
+    const info = AREAS[a.letra];
+    const caja = crear("div", "imp-area");
+    caja.style.borderTopColor = info.color;
+    caja.appendChild(crear("h3", "", a.letra + " · " + info.nombre + " (" + a.porcentaje + " %)"));
+    caja.appendChild(crear("p", "", info.descripcion));
+    const ul = crear("ul");
+    info.carreras.forEach(function (c) { ul.appendChild(crear("li", "", c)); });
+    caja.appendChild(ul);
+    cont.appendChild(caja);
+  });
+  hoja.appendChild(cont);
+
+  hoja.appendChild(crear("p", "imp-aviso", "Este test es orientativo y no reemplaza una evaluación vocacional completa con un profesional. En el Pre Equinoccio te acompañamos con nuestra OVP + IA. “Juntos, aseguremos tu futuro”."));
+
+  const pie = crear("div", "imp-pie");
+  pie.innerHTML = "<strong>Preuniversitario Equinoccio</strong> · Cacha XV N5-174 y Capitán Geovanny Calles, Plaza Apolo, tercer piso, Cuatro Esquinas, Calderón, Quito<br>" +
+    "Instagram @preuequinoccio2026 · TikTok @pre.equinoccio · ecequinoccioedu@gmail.com";
+  hoja.appendChild(pie);
+}
+
+$("btn-descargar").addEventListener("click", function () { window.print(); });
+
+$("btn-reiniciar").addEventListener("click", function () {
+  if (!window.confirm("¿Seguro que quieres volver a hacer el test? Se borrarán tus respuestas guardadas.")) return;
+  borrarGuardado();
+  estado = estadoInicial();
+  etapaGuardada = null;
+  $("form-datos").reset();
+  $("aviso-continuar").classList.add("oculto");
+  mostrarEtapa("bienvenida");
+  $("titulo-bienvenida").focus({ preventScroll: true });
+});
+
+/* ---------------------------------------------------------------------
+   ARRANQUE
+   --------------------------------------------------------------------- */
+prepararBienvenida();
+</script>
+</body>
+</html>
